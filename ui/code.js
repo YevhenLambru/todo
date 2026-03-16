@@ -1,3 +1,5 @@
+const API_BASE = 'https://todo-hvqs.onrender.com'
+
 function init() {
   let infoText = document.getElementById('infoText')
   infoText.innerHTML = 'Ladataan tehtävälista palvelimelta, odota...'
@@ -5,7 +7,7 @@ function init() {
 }
 
 async function loadTodos() {
-  let response = await fetch('http://localhost:3000/todos')
+  let response = await fetch(`${API_BASE}/todos`)
   let todos = await response.json()
     console.log(todos)
   showTodos(todos)
@@ -78,7 +80,7 @@ async function addTodo() {
     return
   }
   const data = { 'text': newTodo.value }
-  const response = await fetch('http://localhost:3000/todos', {
+  const response = await fetch(`${API_BASE}/todos`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -122,7 +124,7 @@ async function updateTodo(id) {
     const data = { 'text': newTodo.value }; // Muodostetaan JSON-data lähetettäväksi
     
     // Muodostetaan URL, johon tehtävä päivitetään, käyttämällä tehtävän ID:tä
-    let url = "http://localhost:3000/todos/" + id;
+    let url = `${API_BASE}/todos/` + id;
     
     // Lähetetään PUT-pyyntö palvelimelle, joka päivittää tehtävän
     const response = await fetch(url, {
@@ -150,7 +152,7 @@ function editTodo(id, text) {
 }
 
 async function removeTodo(id) {
-  const response = await fetch('http://localhost:3000/todos/'+id, {
+  const response = await fetch(`${API_BASE}/todos/`+id, {
     method: 'DELETE'
   })
   let responseJson = await response.json()
