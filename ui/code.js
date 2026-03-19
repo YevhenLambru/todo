@@ -1,4 +1,4 @@
-const API_BASE = 'https://todo-hvqs.onrender.com'
+const API_BASE = 'http://localhost:3000'
 
 function init() {
   let infoText = document.getElementById('infoText')
